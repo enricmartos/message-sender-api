@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  java:
+    container_name: message_sender_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
