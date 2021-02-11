@@ -58,6 +58,7 @@ $ ./mvnw spring-boot:run
 
 #### Scenario 1
 POST http://localhost:8080/api/v1/message/send
+
 **Request Body**
 ```json
 {
@@ -82,6 +83,7 @@ And for the other half:
 
 #### Scenario 2
 POST http://localhost:8080/api/v1/message/send
+
 **Request Body**:
 ```json
 {
