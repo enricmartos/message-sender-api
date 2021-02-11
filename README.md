@@ -43,11 +43,11 @@ $ ./mvnw spring-boot:run
 
 ## Validate test scenarios
 
-- Scenario 1
+#### Scenario 1
 - Given the providers defined in the table of the exercise, iterate 10 message sendings and show the providers used for the destination 0034666111222.
 - Expected result: Given that there are 2 providers (P1 and P3) with the prefix 0034 and they both have the same cost (1), then a random distribution is applied for these two providers. So, most likely distribution will be 5 messages sent by P1 and 5 messages by P3.
 
-- Scenario 2
+#### Scenario 2
 - Given the providers defined in the table of the exercise, iterate 10 message sendings and show the providers used for the destination 0033777111222.
 - Expected result: Given that there is only 1 provider (P3) with this prefix 0033, P3 will send the 10 messages.
 
