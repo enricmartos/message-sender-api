@@ -4,14 +4,14 @@ import org.emartos.messagesender.model.MockProvider;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryProviderRepository implements ProviderRepository {
 
-    private final Set<MockProvider> providers = Collections.unmodifiableSet(new HashSet<MockProvider>() {
+    private static final Set<MockProvider> providers = Collections.unmodifiableSet(new TreeSet<MockProvider>() {
         {
             add(MockProvider.create("P1", "0034", 1));
             add(MockProvider.create("P2", "0034", 2));

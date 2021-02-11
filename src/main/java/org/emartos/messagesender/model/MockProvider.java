@@ -3,8 +3,10 @@ package org.emartos.messagesender.model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
 
-public class MockProvider {
+
+public class MockProvider implements Comparable<MockProvider> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MockProvider.class.getName());
 
     private final String name;
@@ -31,6 +33,35 @@ public class MockProvider {
 
     public Integer getCost() {
         return cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MockProvider that = (MockProvider) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(prefix, that.prefix) &&
+                Objects.equals(cost, that.cost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, prefix, cost);
+    }
+
+    @Override
+    public String toString() {
+        return "MockProvider{" +
+                "name='" + name + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
+
+    @Override
+    public int compareTo(MockProvider mockProvider) {
+        return  this.getCost() > mockProvider.getCost() ? 1 : -1;
     }
 
     public MessageSentOperation sendMessage(Message message) {

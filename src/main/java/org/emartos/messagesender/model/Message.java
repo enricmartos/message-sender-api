@@ -19,7 +19,7 @@ public class Message {
         return textToSend;
     }
 
-    public String getMobileNumberPrefix() {
+    public String extractMobileNumberPrefix() {
         return this.getToMobileNumber().substring(0, PREFIX_LENGTH);
     }
 }

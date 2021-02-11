@@ -24,8 +24,10 @@ public class MessageSenderControllerTest {
 
     @InjectMocks
     MessageSenderController messageSenderController;
+
     @Mock
     ProviderService providerService;
+
     private MessageSentOperation messageSentOperationMock;
 
     @Rule
@@ -36,7 +38,7 @@ public class MessageSenderControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    // HAPPY PATH
+    // HAPPY PATHS
     @Test
     public void whenMessageContainsValidFields_thenOkStatusIsReturned() throws MessageSenderException {
         // GIVEN

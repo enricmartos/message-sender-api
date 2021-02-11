@@ -5,12 +5,9 @@ import org.emartos.messagesender.model.MessageSentOperation;
 import org.emartos.messagesender.model.MockProvider;
 import org.emartos.messagesender.model.exceptions.ProviderNotFoundException;
 import org.emartos.messagesender.store.ProviderRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -34,7 +31,7 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     private Optional<MockProvider> getProvider(Message message) {
-        Set<MockProvider> providersWithSamePrefix = providerRepository.getByPrefix(message.getMobileNumberPrefix());
+        Set<MockProvider> providersWithSamePrefix = providerRepository.getByPrefix(message.extractMobileNumberPrefix());
         if (providersWithSamePrefix.isEmpty()) {
             return Optional.empty();
         }
@@ -55,7 +52,7 @@ public class ProviderServiceImpl implements ProviderService {
         return candidateProviders.size() == 1;
     }
 
-    Set<MockProvider> getProvidersWithSameMinCost(Set<MockProvider> providers) {
+    private Set<MockProvider> getProvidersWithSameMinCost(Set<MockProvider> providers) {
         Integer providersMinimumCost = getProvidersMinCost(providers);
         return providers
                 .stream()
@@ -63,13 +60,21 @@ public class ProviderServiceImpl implements ProviderService {
                 .collect(Collectors.toSet());
     }
 
-    Integer getProvidersMinCost(Set<MockProvider> mockProviders) {
-        return mockProviders
+    private Integer getProvidersMinCost(Set<MockProvider> providers) {
+        return providers
                 .stream()
-                .min(Comparator.comparing(MockProvider::getCost))
-                .map(MockProvider::getCost)
-                .orElse(null);
+                .findFirst()
+                .get()
+                .getCost();
     }
+
+//    Integer getProvidersMinCost(Set<MockProvider> mockProviders) {
+//        return mockProviders
+//                .stream()
+//                .min(Comparator.comparing(MockProvider::getCost))
+//                .map(MockProvider::getCost)
+//                .orElse(null);
+//    }
 
     MockProvider getRandomProvider(Set<MockProvider> mockProviders) {
         return mockProviders

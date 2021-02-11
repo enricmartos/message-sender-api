@@ -5,7 +5,6 @@ import org.emartos.messagesender.MockProviderMother;
 import org.emartos.messagesender.model.Message;
 import org.emartos.messagesender.model.MessageSentOperation;
 import org.emartos.messagesender.model.exceptions.ProviderNotFoundException;
-import org.emartos.messagesender.store.InMemoryProviderRepository;
 import org.emartos.messagesender.store.ProviderRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,7 +17,6 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isOneOf;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -34,17 +32,15 @@ public class ProviderServiceImplTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-
-//        providerRepository = new InMemoryProviderRepository();
     }
 
     // HAPPY PATHS
     @Test
-    public void whenThereIsASingleProviderForTheMobilePrefix_thenTheProviderIsReturned() throws ProviderNotFoundException {
+    public void whenThereIsASingleProviderWithTheMobilePrefix_thenThisProviderIsReturned()
+            throws ProviderNotFoundException {
         // GIVEN
         Message message = MessageMother.messageWithToMobileNumberPrefix0033();
         when(providerRepository.getByPrefix("0033")).thenReturn(MockProviderMother.providersFor0033Prefix());
-//        when(providerRepository.getByPrefix("0033")).thenReturn(providerRepository.getByPrefix("0033"));
 
         // WHEN
         MessageSentOperation messageSentOperation = providerService.sendMessage(message);
@@ -55,21 +51,23 @@ public class ProviderServiceImplTest {
     }
 
     @Test
-    public void whenThereAreManyProvidersForTheMobilePrefix_thenTheProviderWithMinCostIsReturned() throws ProviderNotFoundException {
+    public void whenThereAreManyProvidersWithTheSameMobilePrefix_thenTheProviderWithMinCostIsReturned()
+            throws ProviderNotFoundException {
         // GIVEN
-        Message message = MessageMother.messageWithToMobileNumberPrefix0034();
-        when(providerRepository.getByPrefix("0034")).thenReturn(MockProviderMother.providersFor0034Prefix());
+        Message message = MessageMother.messageWithToMobileNumberPrefix0033();
+        when(providerRepository.getByPrefix("0033")).thenReturn(MockProviderMother.providersFor0033Prefix());
 
         // WHEN
         MessageSentOperation messageSentOperation = providerService.sendMessage(message);
 
         // THEN
         Assert.assertNotNull(messageSentOperation.getId());
-        assertThat(messageSentOperation.getProviderName(), anyOf(is("P1"), is("P3")));
+        Assert.assertEquals("P4", messageSentOperation.getProviderName());
     }
 
     @Test
-    public void whenThereAreManyProvidersForTheMobilePrefixWithSameMinCost_thenOneOfThemIsReturnedRandomly() throws ProviderNotFoundException {
+    public void whenThereAreManyProvidersWithTheSameMobilePrefixWithSameMinCost_thenOneOfThemIsReturnedRandomly()
+            throws ProviderNotFoundException {
         // GIVEN
         Message message = MessageMother.messageWithToMobileNumberPrefix0034();
         when(providerRepository.getByPrefix("0034")).thenReturn(MockProviderMother.providersFor0034Prefix());
@@ -94,6 +92,7 @@ public class ProviderServiceImplTest {
         MessageSentOperation messageSentOperation = providerService.sendMessage(message);
 
         // THEN
-//        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assert.assertNull(messageSentOperation);
     }
+
 }
