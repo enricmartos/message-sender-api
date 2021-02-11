@@ -20,6 +20,14 @@ public class ProviderServiceImpl implements ProviderService {
     @Autowired
     private ProviderRepository providerRepository;
 
+    /**
+     * This method contains the logic to choose the provider
+     * that will send the message to the specified destination
+     *
+     * @param message the message containing the destination mobile number
+     * @return the Message Operation containing the operation id and
+     * the provider chosen to send the message to the destination
+     */
     @Override
     public MessageSentOperation sendMessage(Message message) throws ProviderNotFoundException {
         Optional<MockProvider> provider = getProvider(message);
@@ -60,6 +68,13 @@ public class ProviderServiceImpl implements ProviderService {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * This returns the minimum cost for the input providers. It chooses the cost of the first one
+     * because the elements of the TreeSet are already ordered by cost.
+     *
+     * @param providers the message containing the destination mobile number
+     * @return the minimum cost for the input providers
+     */
     private Integer getProvidersMinCost(Set<MockProvider> providers) {
         return providers
                 .stream()
@@ -67,14 +82,6 @@ public class ProviderServiceImpl implements ProviderService {
                 .get()
                 .getCost();
     }
-
-//    Integer getProvidersMinCost(Set<MockProvider> mockProviders) {
-//        return mockProviders
-//                .stream()
-//                .min(Comparator.comparing(MockProvider::getCost))
-//                .map(MockProvider::getCost)
-//                .orElse(null);
-//    }
 
     MockProvider getRandomProvider(Set<MockProvider> mockProviders) {
         return mockProviders

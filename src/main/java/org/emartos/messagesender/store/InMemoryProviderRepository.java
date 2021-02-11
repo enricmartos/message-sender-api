@@ -8,6 +8,10 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+/**
+* This class mocks the Provider Cost table defined in the exercise.
+ * To switch to a DB persistence option a new implementation like MySQLProviderRepository would be needed
+*/
 @Repository
 public class InMemoryProviderRepository implements ProviderRepository {
 

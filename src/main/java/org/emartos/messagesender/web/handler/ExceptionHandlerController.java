@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+* This class maps domain exceptions to correspondent HTTP status codes
+*/
 @ControllerAdvice
 public class ExceptionHandlerController {
 

@@ -51,15 +51,6 @@ public class MockProvider implements Comparable<MockProvider> {
     }
 
     @Override
-    public String toString() {
-        return "MockProvider{" +
-                "name='" + name + '\'' +
-                ", prefix='" + prefix + '\'' +
-                ", cost=" + cost +
-                '}';
-    }
-
-    @Override
     public int compareTo(MockProvider mockProvider) {
         return  this.getCost() > mockProvider.getCost() ? 1 : -1;
     }

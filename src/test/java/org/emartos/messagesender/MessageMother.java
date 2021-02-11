@@ -2,6 +2,10 @@ package org.emartos.messagesender;
 
 import org.emartos.messagesender.model.Message;
 
+/**
+* This class applies the Object Mother test pattern to help create example Message objects used for testing
+*/
+
 public class MessageMother {
 
     public static Message messageWithNullFields() {
@@ -22,6 +26,10 @@ public class MessageMother {
                         " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an.");
     }
 
+    public static Message messageWithToMobileNumberPrefix0032() {
+        return new Message("0032777111222", "Test Text");
+    }
+
     public static Message messageWithValidFields() {
         return new Message("0034777111222", "Test Text");
     }
@@ -38,8 +46,5 @@ public class MessageMother {
     public static Message messageWithToMobileNumberPrefix0035() {
         return new Message("0035777111222", "Test Text");
     }
-
-
-
 
 }

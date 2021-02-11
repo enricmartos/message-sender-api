@@ -2,6 +2,9 @@ package org.emartos.messagesender.web.validator;
 
 import org.emartos.messagesender.model.exceptions.InvalidMessageException;
 
+/**
+* This class defines the integrity rules that Message fields must fulfill
+*/
 public class MessageValidationHelper {
 
     private static final int MOBILE_NUMBER_LENGTH = 13;
