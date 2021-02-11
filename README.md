@@ -111,11 +111,11 @@ The mockup provider leaves a **log trace** like the one below at every request:
 - Go to **Postman Runner** (upper-left corner, next to Import button), choose the imported collection Message Sender and set the number of Iterations to 10.
 
 #### Scenario 1
-- Import sendMessageJSONPayloadScenario1.json file (present in this [zip](https://drive.google.com/file/d/1d-XQMp8gtvyJ5qSaWT6RyFZsem0nRG2O/view?usp=sharing)), which contains the example request bodies for the Scenario 1
+- Import *sendMessageJSONPayloadScenario1.json* file (present in this [zip](https://drive.google.com/file/d/1d-XQMp8gtvyJ5qSaWT6RyFZsem0nRG2O/view?usp=sharing)), which contains the example request bodies for the Scenario 1
 - Click on Start Run and verify the results
 
 #### Scenario 2
-- Import file sendMessageJSONPayloadScenario2.json (present in this [zip](https://drive.google.com/file/d/1d-XQMp8gtvyJ5qSaWT6RyFZsem0nRG2O/view?usp=sharing)), which contains the example request bodies for the Scenario 1
+- Import *sendMessageJSONPayloadScenario2.json* file (present in this [zip](https://drive.google.com/file/d/1d-XQMp8gtvyJ5qSaWT6RyFZsem0nRG2O/view?usp=sharing)), which contains the example request bodies for the Scenario 1
 - Click on Start Run and verify the results
 
 ### Unit tests
