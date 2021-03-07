@@ -3,7 +3,7 @@
 ## Description
 
 This REST API uses several providers to deliver messages to the specified mobile numbers. 
-The provider is chosen by appying a LCR (Least Cost Routing) strategy based on the destination mobile phone. In case that many providers have the same costs, a random distribution of the load is applied among these providers.
+The provider is chosen by applying an LCR (Least Cost Routing) strategy based on the destination mobile phone. In case that many providers have the same costs, a random distribution of the load is applied among these providers.
 
 ## Core technologies
 
@@ -44,11 +44,11 @@ $ ./mvnw spring-boot:run
 ## Validate test scenarios
 
 #### Scenario 1
-- Given the providers defined in the table of the exercise, iterate 10 message sendings and show the providers used for the destination 0034666111222.
-- **Expected result**: Given that there are 2 providers (P1 and P3) with the prefix 0034 and they both have the same cost (1), then a random distribution is applied for these two providers. So, most likely distribution will be 5 messages sent by P1 and 5 messages by P3.
+- Given the providers defined in the table of the exercise, iterate 10 message deliveries and show the providers used for the destination 0034666111222.
+- **Expected result**: Given that there are 2 providers (P1 and P3) with the prefix 0034, and they both have the same cost (1), then a random distribution is applied for these two providers. So, most likely distribution will be 5 messages sent by P1 and 5 messages by P3.
 
 #### Scenario 2
-- Given the providers defined in the table of the exercise, iterate 10 message sendings and show the providers used for the destination 0033777111222.
+- Given the providers defined in the table of the exercise, iterate 10 message deliveries and show the providers used for the destination 0033777111222.
 - **Expected result**: Given that there is only 1 provider (P3) with this prefix 0033, P3 will send the 10 messages.
 
 ### With Swagger
@@ -66,7 +66,7 @@ POST http://localhost:8080/api/v1/message/send
   "toMobileNumber": "0034666111222"
 }
 ```
-**Expected response body** for approximately half of the requests should be somethink like:
+**Expected response body** for approximately half of the requests should be something like:
 ```json
 {
   "id": "33c415a4-5bf5-4426-b2d2-bc83abd2b8b1",
@@ -107,7 +107,7 @@ The mockup provider leaves a **log trace** like the one below at every request:
 
 ### With Postman
 
-- Import [this](https://www.getpostman.com/collections/9e4645b9a9ef475846c2) Postman collection, which contains the request and the automated tests to validate both scenarios.
+- Import [this](https://www.getpostman.com/collections/9e4645b9a9ef475846c2) Postman collection, which contains the request, and the automated tests to validate both scenarios.
 - Go to **Postman Runner** (upper-left corner, next to Import button), choose the imported collection Message Sender and set the number of Iterations to 10.
 
 #### Scenario 1
