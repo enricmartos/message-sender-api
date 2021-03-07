@@ -39,7 +39,7 @@ $ docker-compose up
 $ ./mvnw spring-boot:run
 ```
 
-- Open your browser and test the application on *localhost:8080/swagger-ui.html*
+- Open your browser and test the application on *http://localhost:8080/swagger-ui.html*
 
 ## Validate test scenarios
 
@@ -53,7 +53,7 @@ $ ./mvnw spring-boot:run
 
 ### With Swagger
 
-- Go to message-sender-controller endpoint on *localhost:8080/swagger-ui.html*
+- Go to message-sender-controller endpoint on *http://localhost:8080/swagger-ui.html*
 - Execute the requests below for both scenarios 10 times and verify that the actual result matches the expected result.
 
 #### Scenario 1
