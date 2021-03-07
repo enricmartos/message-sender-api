@@ -25,7 +25,7 @@ public class MessageValidationHelper {
         checkNotEmpty(value, parameterName);
         if (value.length() > MAX_TEXT_LENGTH) {
             throw new InvalidMessageException(String.format("Field %s can't be greater than %d",
-                    parameterName, MOBILE_NUMBER_LENGTH));
+                    parameterName, MAX_TEXT_LENGTH));
         }
         return this;
     }
